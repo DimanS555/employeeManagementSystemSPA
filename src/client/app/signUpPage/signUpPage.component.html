@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <form id="signupForm" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <fieldset>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" formControlName="firstName" />
+            <ul *ngIf="(formSubmitted || form.controls['firstName'].dirty) && 
+                form.controls['firstName'].invalid">
+                <li *ngFor="let error of form.controls['firstName'].getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" formControlName="lastName" />
+            <ul *ngIf="(formSubmitted || form.controls['lastName'].dirty) && 
+                form.controls['lastName'].invalid">
+                <li *ngFor="let error of form.controls['lastName'].getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <label for="email">Email:</label>
+            <input type="email" name="email" formControlName="email" />
+            <ul *ngIf="(formSubmitted || form.controls['email'].dirty) && 
+                form.controls['email'].invalid">
+                <li *ngFor="let error of form.controls['email'].getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <label for="password">Password:</label>
+            <input type="password" name="password" formControlName="password" />
+            <ul *ngIf="(formSubmitted || form.controls['password'].dirty) && 
+                form.controls['password'].invalid">
+                <li *ngFor="let error of form.controls['password'].getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>  
+        </fieldset>
+        <fieldset>
+            <label for="confirmPassword">Confirm password:</label>
+            <input type="password" name="confirmPassword" formControlName="confirmPassword" />
+            <ul *ngIf="(formSubmitted || form.controls['confirmPassword'].dirty) && 
+                form.controls['confirmPassword'].invalid">
+                <li *ngFor="let error of form.controls['confirmPassword'].getValidationMessages()">
+                    {{error}}
+                </li>
+            </ul>  
+            </fieldset>
+        <fieldset class="nolabel">
+            <button type="submit" class="btn btn-primary" 
+                [disabled]="formSubmitted && form.invalid"
+                [class.btn-secondary]="formSubmitted && form.invalid" >
+                    SignUp
+            </button>
+        </fieldset>
+    </form>
+</div>

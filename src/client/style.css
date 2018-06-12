@@ -1,0 +1,63 @@
+html { 
+	background: #1f394d; 
+}
+
+body { 
+	background: url('./app/images/bgGradient.png'); font-family: Arial, san-serif; margin: 0; text-align: center; 
+}
+
+#background { 
+	background: url('./app/images/wrapperBg.png'); 
+	margin: 0 auto; 
+	position: relative;
+	height: 622px;  
+	width: 826px; 
+}
+#content { 
+	left: 42px; 
+	position: absolute; 
+	text-align: center; 
+	top: 25px; 
+	width: 741px;
+	height: 570px;  
+}
+
+#navbar{
+	position: absolute;
+	width: 583px;
+	left: 50%;
+	margin-left: -291px;
+	top: 10px;
+}
+
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	overflow: hidden;
+	border-radius: 5px;
+    background-color: #222222;
+}
+
+#navbar li {
+    float: left;
+}
+
+#navbar li a {
+    display: block;
+    color: #6B747E;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+li a:hover:not(.active) {
+	background-color: #111;
+	
+}
+
+.active {
+	background-color: #4CAF50;
+	color: white!important;
+}
