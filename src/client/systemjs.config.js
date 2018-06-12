@@ -26,7 +26,8 @@
       // other libraries
       'tslib': 'npm:tslib/tslib.js',
       'lodash': 'npm:lodash/lodash.js',
-      'ngx-bootstrap': 'npm:ngx-bootstrap'
+      'ngx-bootstrap': 'npm:ngx-bootstrap',
+      'auth0-js': 'npm:auth0-js/build/auth0.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
