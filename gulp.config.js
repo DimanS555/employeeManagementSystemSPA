@@ -40,7 +40,8 @@ var staticConfig = {
         '@angular/**/*.js',
         'tslib/tslib.js',
         'lodash/**/*',
-        'ngx-bootstrap/**/*'
+        'ngx-bootstrap/**/*',
+        'auth0-js/build/auth0.js'
     ],
     bower: [
         'alertify.js/lib/alertify.min.js',
