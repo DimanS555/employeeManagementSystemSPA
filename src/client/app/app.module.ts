@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import {HomeComponent} from './home/home.component';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {HomeComponent} from './home/home.component';
         AppComponent,
         HomeComponent
     ],
+    providers: [AuthService],
     bootstrap: [AppComponent]
 })
 
