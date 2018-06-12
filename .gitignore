@@ -4,3 +4,6 @@
 # dependencies
 /node_modules
 /bower_components
+
+# config file with Auth0 variables
+/src/client/app/auth/auth0Variables.ts
