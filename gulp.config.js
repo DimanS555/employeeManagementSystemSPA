@@ -1,3 +1,5 @@
+let historyFallback = require('connect-history-api-fallback');
+
 var baseDirs = {
     // the root for all source code
     sourceRoot: "src/",
@@ -55,7 +57,10 @@ var staticConfig = {
 
 var plugins = {
     browserSync: {
-        server: 'build/client',
+        server: {
+            baseDir: 'build/client',
+            middleware: [historyFallback()]
+        },
         port: '3000',
         ghostMode: false,
         reloadDelay: 1000,
