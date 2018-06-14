@@ -5,7 +5,9 @@ import { AppRoutingModule } from './appRouting.module';
 import { Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {HomeComponent} from './home/home.component';
+import { HomeComponent } from './home/home.component';
+import { CallbackComponent } from './callback/callback.component';
+
 import { AuthService } from './auth/auth.service';
 
 
@@ -16,7 +18,8 @@ import { AuthService } from './auth/auth.service';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        CallbackComponent
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]
