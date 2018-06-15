@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './callback/callback.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth/auth.service';
-
 
 @NgModule({
     imports: [
@@ -19,7 +19,8 @@ import { AuthService } from './auth/auth.service';
     declarations: [
         AppComponent,
         HomeComponent,
-        CallbackComponent
+        CallbackComponent,
+        ProfileComponent
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]

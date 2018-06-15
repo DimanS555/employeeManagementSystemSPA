@@ -18,8 +18,10 @@ export class AuthService {
         responseType: 'token id_token',
         audience: AUTH_CONFIG.apiUrl,
         redirectUri: AUTH_CONFIG.callbackURL,
-        scope: 'openid'
+        scope: 'openid profile email'
     });
+
+    userProfile: any;
 
     constructor(private router: Router) { }
 
@@ -63,6 +65,20 @@ export class AuthService {
         // access token's expiry time
         const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
         return new Date().getTime() < expiresAt;
+    }
+
+    getUserProfile(callback): void {
+        const accessToken = localStorage.getItem('access_token');
+        if (!accessToken) {
+            throw new Error('Access Token must exist to fetch profile');
+        }
+        const self = this;
+        this.auth0.client.userInfo(accessToken, (err, profile) => {
+            if (profile) {
+                self.userProfile = profile;
+            }
+            callback(err, profile);
+        });
     }
 }
 
