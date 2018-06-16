@@ -10,6 +10,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from '../app/auth/authGuard.service';
 
 @NgModule({
     imports: [
@@ -22,7 +23,7 @@ import { AuthService } from './auth/auth.service';
         CallbackComponent,
         ProfileComponent
     ],
-    providers: [AuthService],
+    providers: [AuthService, AuthGuardService],
     bootstrap: [AppComponent]
 })
 
