@@ -1,0 +1,44 @@
+input.ng-dirty.ng-invalid { border: 2px solid #ff0000 }
+input.ng-dirty.ng-valid { border: 2px solid #6bc502 }
+
+fieldset { 
+	border: dashed #70b370; 
+	border-width: 1px 1px 0 1px; 
+	margin: 0 auto 3px auto; 
+	padding: 8px 0 8px 0; 
+	text-align: left; 
+	width: 460px; 
+}
+
+fieldset.nolabel { 
+	border-width: 1px 0 0 0; 
+}
+
+label { 
+	float: left; 
+	margin: 3px 6px 0 0; 
+	text-align: right; 
+	width: 170px; 
+}
+
+input { 
+	width: 250px;
+	height:25px; 
+}
+
+#isActive{
+	width:15px;
+	height:15px;
+}
+
+ul li{
+      color: #900; 
+	  font-size: 15px; 
+	  font-style: italic; 
+	  margin: 6px 0 0 138px;
+	  list-style-type: none;
+  }
+.wrapper{
+	position:relative;
+	top: 120px;
+}

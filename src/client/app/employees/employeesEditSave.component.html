@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div>
+        <h4>{{editing ? "Edit some information" : "Create new employee"}}</h4>
+    </div>
+    <form id="myForm" #form="ngForm" novalidate (ngSubmit)="submitForm(form)" (reset)="resetForm()" >
+        <fieldset>
+            <label for="firstName">First Name:</label>
+            <input id="firstName" name="firstName" type="text" [(ngModel)]="employee.firstName" required pattern="^[A-Za-z]+$" #firstName="ngModel"/>
+            <ul *ngIf="firstName.dirty && firstName.invalid">
+                <li *ngIf="firstName.errors.required">
+                    Please enter in first name.
+                </li>
+                <li *ngIf="firstName.errors.pattern">
+                    Only letters are allowed in a first name.
+                </li>
+            </ul>    
+        </fieldset>
+        <fieldset>
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" name="lastName" type="text" [(ngModel)]="employee.lastName" required pattern="^[A-Za-z]+$" #lastName="ngModel"/>
+            <ul *ngIf="lastName.dirty && lastName.invalid">
+                <li *ngIf="lastName.errors.required">
+                    Please enter in last name.
+                </li>
+                <li *ngIf="lastName.errors.pattern">
+                    Only letters are allowed in the last name.
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <label for="isActive">Is Active ?</label>
+            <input name="isActive" id="isActive" type="checkbox" [(ngModel)] = "employee.isActive"/>
+        </fieldset>
+        <fieldset>
+            <label for="depName">Department:</label>
+            <select name="emp_depID" id="emp_depID" [(ngModel)]="employee.emp_depID" required>
+                <option [value] = "Null" disabled>Select Department</option>
+                <option  *ngFor="let dep of departments$ | async" [value] = "dep.id">
+                    {{dep.depName}}
+                </option>        
+            </select>            
+        </fieldset>
+        <fieldset class="nolabel">
+                <button type="submit" class="btn btn-primary btn-sm" [disabled]="form.invalid">
+                    {{editing ? "Save" : "Create"}}
+                </button>
+                <button type="reset" class="btn btn-secondary btn-sm" routerLink="/">Cancel</button>
+        </fieldset>          
+    </form>
+    </div>

@@ -3,10 +3,10 @@
         <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
         <li><a *ngIf="auth.isAuthenticated()" routerLink="#">News</a></li>
         <li><a *ngIf="auth.isAuthenticated()" routerLink="/profile" routerLinkActive="active">Profile</a></li>
-        <li><a *ngIf="auth.isAuthenticated()" routerLink="#">Employees list</a></li>
-        <li><a *ngIf="auth.isAuthenticated()" routerLink="#">Admin area</a></li>
-        <li class="active" style="float:right"><a *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log in</a></li>
-        <li class="active" style="float:right"><a *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log out</a></li>
+        <li><a *ngIf="auth.isAuthenticated()" routerLink="/employees" routerLinkActive="active">Employees list</a></li>
+        <li><a *ngIf="auth.isAuthenticated()" routerLink="#" routerLinkActive="active">Help & Support</a></li>
+        <li style="float:right"><a *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log in</a></li>
+        <li style="float:right"><a *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log out</a></li>
     </ul>
 </div>
    <router-outlet></router-outlet>

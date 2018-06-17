@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <h4>List of all employees</h4>
+    <table id="tableData" *ngIf="employees && employees.length; else noData">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Active</th>
+                <th>Department</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of employees; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td [ngSwitch]="item.isActive">
+                    <span *ngSwitchCase="1">Yes</span>
+                    <span *ngSwitchDefault>No</span>
+                </td>
+                <td [ngSwitch] = "item.emp_depID">
+                    <span *ngSwitchCase = "1">Finance</span>
+                    <span *ngSwitchCase = "2">HR</span>
+                    <span *ngSwitchCase = "3">Tech</span>
+                    <span *ngSwitchDefault>No data</span>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-xs" (click)="removeEmployee(item)">
+                        Delete
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" [routerLink]="['/form', 'edit', item.id]">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>    
+<div class="createButton">
+    <button class="btn btn-primary btn-sm" routerLink="/form/create">
+        Create New Employee
+    </button>
+</div>
+
+<ng-template #noData><h5>List is empty</h5></ng-template>

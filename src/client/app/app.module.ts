@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './appRouting.module';
+import { EmployeesModule } from './employees/employees.module';
 
 import { Router } from '@angular/router';
 
@@ -11,10 +12,12 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from '../app/auth/authGuard.service';
+import { NotificationService } from './shared/utils/notification.service';
 
 @NgModule({
     imports: [
         BrowserModule,
+        EmployeesModule,
         AppRoutingModule
     ],
     declarations: [
@@ -23,7 +26,7 @@ import { AuthGuardService } from '../app/auth/authGuard.service';
         CallbackComponent,
         ProfileComponent
     ],
-    providers: [AuthService, AuthGuardService],
+    providers: [AuthService, AuthGuardService, NotificationService],
     bootstrap: [AppComponent]
 })
 
