@@ -46,8 +46,8 @@ var staticConfig = {
         'auth0-js/build/auth0.js'
     ],
     bower: [
-        'alertify.js/lib/alertify.min.js',
-        'alertify.js/themes/**/*',
+        'alertify-js/build/alertify.min.js',
+        'alertify-js/build/**/*',
         'bootstrap/dist/**/*'
     ],
     // a glob used to delete all files in the destination path before
