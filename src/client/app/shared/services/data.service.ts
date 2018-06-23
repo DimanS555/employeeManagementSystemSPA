@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import "rxjs/add/observable/throw";
 
-import { Employee, Pagination, PaginatedResult } from '../../models/interfaces';
+import { Employee, Department, Pagination, PaginatedResult } from '../../models/interfaces';
 import { ConfigService } from '../utils/config.service';
 
 @Injectable()
@@ -53,6 +53,16 @@ export class DataService {
 
     getEmployee(id: number): Observable<Employee> {
         return this.httpClient.get(this.baseUrl + 'employees/' + id)
+            .catch(this.handleError);
+    }
+
+    getDepartmentsData(): Observable<Department[]> {
+        return this.httpClient.get(this.baseUrl + 'departments')
+            .catch(this.handleError);
+    }
+
+    getDepartment(id: number): Observable<Department> {
+        return this.httpClient.get(this.baseUrl + 'departments/' + id)
             .catch(this.handleError);
     }
 
