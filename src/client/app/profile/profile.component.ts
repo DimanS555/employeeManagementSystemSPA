@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ProfileComponent implements OnInit {
     profile: any;
+    namespace:string = 'https://homedev/app_metadata'; 
     constructor(public auth: AuthService) { }
     ngOnInit() {
         if (this.auth.userProfile) {
@@ -19,9 +20,11 @@ export class ProfileComponent implements OnInit {
                     throw err;
                 } else {
                     this.profile = profile;
-                    console.log(this.profile);
                 }
             });
         }
+    }
+    isAdmin():boolean{
+    return this.profile[this.namespace].authorization.roles.includes("Admin");
     }
 }
