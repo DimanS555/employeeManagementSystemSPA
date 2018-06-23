@@ -27,6 +27,7 @@ export class DataService {
     createEmployee(employee: Employee): Observable<Employee> {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
         return this.httpClient.post(
             this.baseUrl + 'employees', employee, { headers: headers }
         )
@@ -36,6 +37,7 @@ export class DataService {
     updateEmployee(employee: Employee): Observable<Employee> {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
         return this.httpClient.put(
             this.baseUrl + 'employees/' + employee.id, employee, { headers: headers }
         )
@@ -43,7 +45,9 @@ export class DataService {
     }
 
     deleteEmployee(id: number): Observable<void> {
-        return this.httpClient.delete(this.baseUrl + 'employees/' + id)
+        let headers = new HttpHeaders();
+        headers.append('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
+        return this.httpClient.delete(this.baseUrl + 'employees/' + id, {headers: headers})
             .catch(this.handleError);
     }
 
