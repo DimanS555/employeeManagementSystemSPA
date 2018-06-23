@@ -1,6 +1,6 @@
-<div class="wrapper">
+<div class="wrapper"  *ngIf="employees && employees.length; else noData">
     <h4>List of all employees</h4>
-    <table id="tableData" *ngIf="employees && employees.length; else noData">
+    <table id="tableData">
         <thead>
             <tr>
                 <th>ID</th>
@@ -8,8 +8,8 @@
                 <th>Last Name</th>
                 <th>Active</th>
                 <th>Department</th>
-                <th></th>
-                <th></th>
+                <th *ngIf="hasScopes"></th>
+                <th *ngIf="hasScopes"></th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +27,12 @@
                     <span *ngSwitchCase = "3">Tech</span>
                     <span *ngSwitchDefault>No data</span>
                 </td>
-                <td>
+                <td *ngIf="hasScopes">
                     <button class="btn btn-danger btn-xs" (click)="removeEmployee(item)">
                         Delete
                     </button>
                 </td>
-                <td>
+                <td *ngIf="hasScopes">
                     <button class="btn btn-primary btn-xs" [routerLink]="['/form', 'edit', item.id]">
                         Edit
                     </button>
@@ -41,10 +41,12 @@
         </tbody>
     </table>
 </div>    
-<div class="createButton">
+<div class="createButton" *ngIf="hasScopes">
     <button class="btn btn-primary btn-sm" routerLink="/form/create">
         Create New Employee
     </button>
 </div>
 
-<ng-template #noData><h5>List is empty</h5></ng-template>
+<ng-template #noData><div class="loading">
+    <img src="../../app/images/loading.svg" alt="loading">
+</div></ng-template>

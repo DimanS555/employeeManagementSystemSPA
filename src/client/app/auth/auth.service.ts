@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AUTH_CONFIG } from './auth0Variables';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
 
 (window as any).global = window;
@@ -12,13 +10,15 @@ import * as auth0 from 'auth0-js';
 @Injectable()
 export class AuthService {
 
+    requestedScopes: string = 'openid profile email app_metadata read:employees';
+
     auth0 = new auth0.WebAuth({
         clientID: AUTH_CONFIG.clientID,
         domain: AUTH_CONFIG.domain,
         responseType: 'token id_token',
         audience: AUTH_CONFIG.apiUrl,
         redirectUri: AUTH_CONFIG.callbackURL,
-        scope: 'openid profile email'
+        scope: this.requestedScopes
     });
 
     userProfile: any;
@@ -37,17 +37,18 @@ export class AuthService {
                 this.router.navigate(['/home']);
             } else if (err) {
                 this.router.navigate(['/home']);
-                console.log(err);
             }
         });
     }
 
     private setSession(authResult): void {
         const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+        const scopes = authResult.scope || this.requestedScopes || '';
         // Store the authResult in local storage
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
+        localStorage.setItem('scopes', JSON.stringify(scopes));
     }
 
     logout() {
@@ -79,6 +80,11 @@ export class AuthService {
             }
             callback(err, profile);
         });
+    }
+
+    hasReguiredScopes(scopes: Array<string>): boolean {
+        const requiredScopes = decodeURIComponent(JSON.parse(localStorage.getItem('scopes')).split(' '));
+        return scopes.every(data => requiredScopes.includes(data));
     }
 }
 

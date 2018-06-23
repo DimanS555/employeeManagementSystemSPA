@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from '../app/auth/authGuard.service';
+import { ScopeGuardService } from '../app/auth/scopeGuard.service';
 import { NotificationService } from './shared/utils/notification.service';
 
 @NgModule({
@@ -26,7 +27,11 @@ import { NotificationService } from './shared/utils/notification.service';
         CallbackComponent,
         ProfileComponent
     ],
-    providers: [AuthService, AuthGuardService, NotificationService],
+    providers: [AuthService,
+        AuthGuardService,
+        ScopeGuardService, 
+        NotificationService
+    ],
     bootstrap: [AppComponent]
 })
 
