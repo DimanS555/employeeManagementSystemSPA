@@ -46,6 +46,9 @@
         Create New Employee
     </button>
 </div>
+<pagination [boundaryLinks]="true" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage" class="pagination-sm"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)">
+</pagination>
 
 <ng-template #noData><div class="loading">
     <img src="../../app/images/loading.svg" alt="loading">

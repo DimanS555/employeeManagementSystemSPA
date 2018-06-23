@@ -20,8 +20,21 @@ export class DataService {
         this.baseUrl = configService.apiHost;
     }
 
-    getData():Observable<Employee[]>{
-        return this.httpClient.get(this.baseUrl + 'employees').catch(this.handleError);
+    getData(obj): Observable<PaginatedResult<Employee[]>> {
+        let paginatedResult: PaginatedResult<Employee[]> = new PaginatedResult<Employee[]>();
+        let headers = new HttpHeaders()
+            .append('Content-Type', 'application/json');
+        let params = new HttpParams()
+            .set('limit', obj.itemsPerPage)
+            .set('pageNo', obj.currentPage);
+        return this.httpClient.get(this.baseUrl + 'employees', { headers: headers, params: params })
+            .map((data: any) => {
+                paginatedResult.result = data.result as Employee[];
+                let pagination: Pagination = data.pagingData as Pagination;
+                paginatedResult.pagination = pagination;
+                return paginatedResult;
+            })
+            .catch(this.handleError);
     }
 
     createEmployee(employee: Employee): Observable<Employee> {
@@ -47,7 +60,7 @@ export class DataService {
     deleteEmployee(id: number): Observable<void> {
         let headers = new HttpHeaders();
         headers.append('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-        return this.httpClient.delete(this.baseUrl + 'employees/' + id, {headers: headers})
+        return this.httpClient.delete(this.baseUrl + 'employees/' + id, { headers: headers })
             .catch(this.handleError);
     }
 

@@ -14,6 +14,9 @@ import { NotificationService } from '../shared/utils/notification.service';
     styleUrls: ['employeesList.component.css']
 })
 export class EmployeesListComponent implements OnInit {
+    itemsPerPage: number = 10;
+    currentPage: number = 1;
+    totalItems: number = 0;
     employees: Employee[];
     scopes: any;
     hasScopes: boolean;
@@ -25,13 +28,33 @@ export class EmployeesListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.dataService.getData().subscribe(data => {
-            this.employees = data;
-        });
+        this.loadAllEmployees();
         this.scopes = this.route.snapshot.data.scopes;
         this.hasScopes = this.auth.hasReguiredScopes(this.scopes);
     }
+    
+    loadAllEmployees() {
+        let params = {
+            itemsPerPage: this.itemsPerPage,
+            currentPage: this.currentPage
+        }
+        this.dataService.getData(params)
+            .subscribe((res: PaginatedResult<Employee[]>) => {
+                this.employees = res.result;
+                this.totalItems = res.pagination.totalItems;
+            },
+                error => {
+                    this.notificationService.printErrorMessage(
+                        'Failed to load employees: ' + error
+                    );
+                });
+    }
 
+    pageChanged(event: any): void {
+        this.currentPage = event.page;
+        this.loadAllEmployees();
+    }
+    
     removeEmployee(employee: Employee) {
         this.notificationService.openConfirmationDialog(
             'Are you sure, you want to delete this Employee?', () => {
