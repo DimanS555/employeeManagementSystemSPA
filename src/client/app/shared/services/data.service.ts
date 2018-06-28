@@ -26,7 +26,7 @@ export class DataService {
         let params = new HttpParams()
             .set('limit', obj.itemsPerPage)
             .set('pageNo', obj.currentPage);
-        return this.httpClient.get(this.baseUrl + 'employees', { headers: headers, params: params })
+        return this.httpClient.get(this.baseUrl + '/employees', { headers: headers, params: params })
             .map((data: any) => {
                 paginatedResult.result = data.result as Employee[];
                 let pagination: Pagination = data.pagingData as Pagination;
@@ -40,7 +40,7 @@ export class DataService {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
         return this.httpClient.post(
-            this.baseUrl + 'employees', employee, { headers: headers }
+            this.baseUrl + '/employees', employee, { headers: headers }
         )
             .catch(this.handleError);
     }
@@ -49,29 +49,29 @@ export class DataService {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
         return this.httpClient.put(
-            this.baseUrl + 'employees/' + employee.id, employee, { headers: headers }
+            this.baseUrl + '/employees/' + employee.id, employee, { headers: headers }
         )
             .catch(this.handleError);
     }
 
     deleteEmployee(id: number): Observable<void> {
         let headers = new HttpHeaders();
-        return this.httpClient.delete(this.baseUrl + 'employees/' + id, { headers: headers })
+        return this.httpClient.delete(this.baseUrl + '/employees/' + id, { headers: headers })
             .catch(this.handleError);
     }
 
     getEmployee(id: number): Observable<Employee> {
-        return this.httpClient.get(this.baseUrl + 'employees/' + id)
+        return this.httpClient.get(this.baseUrl + '/employees/' + id)
             .catch(this.handleError);
     }
 
     getDepartmentsData(): Observable<Department[]> {
-        return this.httpClient.get(this.baseUrl + 'departments')
+        return this.httpClient.get(this.baseUrl + '/departments')
             .catch(this.handleError);
     }
 
     getDepartment(id: number): Observable<Department> {
-        return this.httpClient.get(this.baseUrl + 'departments/' + id)
+        return this.httpClient.get(this.baseUrl + '/departments/' + id)
             .catch(this.handleError);
     }
 
