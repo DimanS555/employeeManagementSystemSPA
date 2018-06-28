@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmployeesRoutingModule } from './employeesRouting.module';
 
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,8 @@ import { EmployeeEditSaveComponent } from './employeesEditSave.component';
 
 import { DataService } from '../shared/services/data.service';
 import { ConfigService } from '../shared/utils/config.service';
+
+import { TokenInterceptor } from '../auth/token.interceptor';
 
 @NgModule({
     imports: [
@@ -24,6 +26,14 @@ import { ConfigService } from '../shared/utils/config.service';
         EmployeesListComponent,
         EmployeeEditSaveComponent
     ],
-    providers: [DataService, ConfigService]
+    providers: [
+        DataService,
+        ConfigService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }
+    ]
 })
 export class EmployeesModule { }
