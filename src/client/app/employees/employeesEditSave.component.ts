@@ -24,7 +24,7 @@ export class EmployeeEditSaveComponent {
         private activeRoute: ActivatedRoute,
         private router: Router
     ) {
-       // this.departments$ = this.dataService.getDepartmentsData();
+        this.departments$ = this.dataService.getDepartmentsData();
         this.editing = activeRoute.snapshot.params['mode'] === 'edit';
         let id: number = + activeRoute.snapshot.params['id'];
         if (id) {
