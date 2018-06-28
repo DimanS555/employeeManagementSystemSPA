@@ -10,7 +10,6 @@ import { EmployeesListComponent } from './employeesList.component';
 import { EmployeeEditSaveComponent } from './employeesEditSave.component';
 
 import { DataService } from '../shared/services/data.service';
-import { ConfigService } from '../shared/utils/config.service';
 
 import { TokenInterceptor } from '../auth/token.interceptor';
 
@@ -28,7 +27,6 @@ import { TokenInterceptor } from '../auth/token.interceptor';
     ],
     providers: [
         DataService,
-        ConfigService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,

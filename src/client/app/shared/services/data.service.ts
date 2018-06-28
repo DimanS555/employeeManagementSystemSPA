@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import "rxjs/add/observable/throw";
 
 import { Employee, Department, Pagination, PaginatedResult } from '../../models/interfaces';
-import { ConfigService } from '../utils/config.service';
+import { AUTH_CONFIG } from '../../auth/auth0Variables';
 
 @Injectable()
 export class DataService {
@@ -15,9 +15,8 @@ export class DataService {
 
     constructor(
         private httpClient: HttpClient,
-        private configService: ConfigService,
     ) {
-        this.baseUrl = configService.apiHost;
+        this.baseUrl = AUTH_CONFIG.apiUrl;
     }
 
     getData(obj): Observable<PaginatedResult<Employee[]>> {
