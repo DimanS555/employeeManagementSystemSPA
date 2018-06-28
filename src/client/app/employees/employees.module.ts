@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmployeesRoutingModule } from './employeesRouting.module';
+import { PaginationModule } from 'ngx-bootstrap';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,7 +20,8 @@ import { TokenInterceptor } from '../auth/token.interceptor';
         FormsModule,
         HttpClientModule,
         HttpClientJsonpModule,
-        EmployeesRoutingModule
+        EmployeesRoutingModule,
+        PaginationModule.forRoot()
     ],
     declarations: [
         EmployeesListComponent,

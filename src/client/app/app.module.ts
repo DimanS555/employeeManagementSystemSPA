@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './appRouting.module';
 import { EmployeesModule } from './employees/employees.module';
-import { PaginationModule } from 'ngx-bootstrap';
 
 import { Router } from '@angular/router';
 
@@ -20,8 +19,7 @@ import { NotificationService } from './shared/utils/notification.service';
     imports: [
         BrowserModule,
         EmployeesModule,
-        AppRoutingModule,
-        PaginationModule
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
