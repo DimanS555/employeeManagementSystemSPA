@@ -44,7 +44,6 @@
         "typings": "2.1.1"
     },
     "scripts": {
-        "start": "concurrently \"gulp serve\" \"npm run json\"",
-        "json": "json-server --p 3500 restData.js"
+        "start": "gulp serve"
     }
 }
