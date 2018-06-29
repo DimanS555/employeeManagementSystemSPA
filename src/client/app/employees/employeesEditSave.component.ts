@@ -42,7 +42,7 @@ export class EmployeeEditSaveComponent {
     submitForm(form: NgForm) {
         if (form.valid) {
             this.saveEmployee(this.employee);
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/employees');
         }
     }
 
