@@ -20,7 +20,7 @@ const appRoutes: Routes = [
         }
     },
     {
-        path: '"form/:mode/:id"',
+        path: 'form/:mode/:id',
         component: EmployeeEditSaveComponent,
         canActivate: [ScopeGuard],
         data: {
