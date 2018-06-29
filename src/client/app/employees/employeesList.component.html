@@ -1,4 +1,4 @@
-<div class="wrapper"  *ngIf="employees && employees.length; else noData">
+<div class="wrapper"  *ngIf="employees && employees.length && departments; else noData">
     <h4>List of all employees</h4>
     <table id="tableData">
         <thead>
@@ -21,12 +21,7 @@
                     <span *ngSwitchCase="1">Yes</span>
                     <span *ngSwitchDefault>No</span>
                 </td>
-                <td [ngSwitch] = "item.emp_depID">
-                    <span *ngSwitchCase = "1">Finance</span>
-                    <span *ngSwitchCase = "2">HR</span>
-                    <span *ngSwitchCase = "3">Tech</span>
-                    <span *ngSwitchDefault>No data</span>
-                </td>
+                <td>{{getDepName(item.emp_depID)}}</td>
                 <td *ngIf="hasScopes">
                     <button class="btn btn-danger btn-xs" (click)="removeEmployee(item)">
                         Delete

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 
-import { Employee, Pagination, PaginatedResult } from '../../app/models/interfaces';
+import { Employee, Pagination, Department, PaginatedResult } from '../../app/models/interfaces';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../shared/services/data.service';
 import { NotificationService } from '../shared/utils/notification.service';
@@ -20,6 +20,7 @@ export class EmployeesListComponent implements OnInit {
     employees: Employee[];
     scopes: any;
     hasScopes: boolean;
+    departments: Department[];
     constructor(
         private auth: AuthService,
         private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class EmployeesListComponent implements OnInit {
         this.loadAllEmployees();
         this.scopes = this.route.snapshot.data.scopes;
         this.hasScopes = this.auth.hasReguiredScopes(this.scopes);
+        this.dataService.getDepartmentsData().subscribe(data => this.departments = data);
     }
     
     loadAllEmployees() {
@@ -71,5 +73,10 @@ export class EmployeesListComponent implements OnInit {
                 );
             }
         );
+    }
+    getDepName(id: number): string{
+        console.log("id = " + id);
+        console.log("type = " + typeof id);
+        return this.departments.find(e => e.id == id).depName;
     }
 }
