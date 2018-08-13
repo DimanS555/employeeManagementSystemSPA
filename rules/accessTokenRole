@@ -1,0 +1,6 @@
+function (user, context, callback) {
+  const namespace = 'https://homedev/';
+  context.accessToken[namespace + 'app_metadata'] = user.app_metadata;
+  context.idToken[namespace + 'app_metadata'] = user.app_metadata;
+  callback(null, user, context);
+}
