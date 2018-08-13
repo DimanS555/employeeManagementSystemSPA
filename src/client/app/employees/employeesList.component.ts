@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Employee, Pagination, Department, PaginatedResult } from '../../app/models/interfaces';
 import { AuthService } from '../auth/auth.service';
@@ -25,7 +26,8 @@ export class EmployeesListComponent implements OnInit {
         private auth: AuthService,
         private route: ActivatedRoute,
         private dataService: DataService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -34,7 +36,7 @@ export class EmployeesListComponent implements OnInit {
         this.hasScopes = this.auth.hasReguiredScopes(this.scopes);
         this.dataService.getDepartmentsData().subscribe(data => this.departments = data);
     }
-    
+
     loadAllEmployees() {
         let params = {
             itemsPerPage: this.itemsPerPage,
@@ -56,7 +58,7 @@ export class EmployeesListComponent implements OnInit {
         this.currentPage = event.page;
         this.loadAllEmployees();
     }
-    
+
     removeEmployee(employee: Employee) {
         this.notificationService.openConfirmationDialog(
             'Are you sure, you want to delete this Employee?', () => {
@@ -74,9 +76,13 @@ export class EmployeesListComponent implements OnInit {
             }
         );
     }
-    getDepName(id: number): string{
-        console.log("id = " + id);
-        console.log("type = " + typeof id);
+    getDepName(id: number): string {
         return this.departments.find(e => e.id == id).depName;
+    }
+    editEmployeePage(id: number) {
+        this.router.navigate(['/form', 'edit', id]);
+    }
+    createEmployeePage(){
+        this.router.navigate(['/form/create']);
     }
 }

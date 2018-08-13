@@ -28,7 +28,7 @@
                     </button>
                 </td>
                 <td *ngIf="hasScopes">
-                    <button class="btn btn-primary btn-xs" [routerLink]="['/form', 'edit', item.id]">
+                    <button class="btn btn-primary btn-xs" (click)="editEmployeePage(item.id)">
                         Edit
                     </button>
                 </td>
@@ -37,7 +37,7 @@
     </table>
 </div>    
 <div class="createButton" *ngIf="hasScopes">
-    <button class="btn btn-primary btn-sm" routerLink="/form/create">
+    <button id="createButton" class="btn btn-primary btn-sm" (click)="createEmployeePage()">
         Create New Employee
     </button>
 </div>

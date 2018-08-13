@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmployeesRoutingModule } from './employeesRouting.module';
@@ -16,7 +16,7 @@ import { TokenInterceptor } from '../auth/token.interceptor';
 
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule,
         HttpClientModule,
         HttpClientJsonpModule,

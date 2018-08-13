@@ -55,8 +55,7 @@ export class DataService {
     }
 
     deleteEmployee(id: number): Observable<void> {
-        let headers = new HttpHeaders();
-        return this.httpClient.delete(this.baseUrl + '/employees/' + id, { headers: headers })
+        return this.httpClient.delete(this.baseUrl + '/employees/' + id)
             .catch(this.handleError);
     }
 
