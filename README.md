@@ -35,7 +35,7 @@ Necessary [Rules](https://auth0.com/docs/rules/current) are stored in the **rule
 
 ## Deploy & Run
 
-To test this application, you should run the corresponding API. For instructions on how to configure and run the API please see the [README.md]()
+To test this application, you should run the corresponding API. For instructions on how to configure and run the API please see the [README.md](https://github.com/DimanS555/employeeManagementSystemAPI/blob/master/README.md)
 
 Once the API is running, you can open a terminal window to the folder in which this README.md is and install the required packages for the Angular SPA by running: 
 
